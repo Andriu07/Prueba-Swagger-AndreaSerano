@@ -19,6 +19,8 @@ import closureDateRoutes from "./routes/closureDateRoutes.js";
 import fontRoutes from "./routes/fontRoutes.js";
 import cartRoutes from "./routes/cart.js";
 import userRoutes from "./routes/users.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./utils/rical-584-EvaluacionApi-1-unresolved.json"
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use(express.json());
 app.get("/ping", (req, res) => {
   res.json({ status: "OK", message: "Pong" });
 });
+
+app.use("api-docs-evaluacion", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
